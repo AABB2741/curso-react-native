@@ -1,0 +1,38 @@
+{
+    "lang": "pt-br",
+    "langMin": "pt",
+    "buttons": {
+        "cancel": "Cancelar",
+        "save": "Salvar"
+    },
+    "main": {
+        "date": {
+            "today": "Hoje"
+        },
+        "iconBar": {
+            "all": "Todas as tarefas",
+            "filtered": "Apenas tarefas pendentes"
+        },
+        "task": {
+            "empty": {
+                "title": "Sem tarefas",
+                "desc": "Parece que você não possui tarefas para o filtro selecionado. Pressione \"+\" para criar uma nova tarefa."
+            },
+            "doneAt": "Concluída em",
+            "delete": "Excluir"
+        },
+        "newTask": {
+            "title": "Nova tarefa",
+            "input": "O que você precisa fazer?",
+            "date_hint": "Até quando você precisa realizar esta tarefa?",
+            "failure": {
+                "title": "Dados inválidos",
+                "desc": "Por favor, insira uma descrição para esta tarefa!"
+            }
+        }
+    },
+    "format": {
+        "date": "DD-MM-YYYY",
+        "moment": "ddd, D [de] MMMM"
+    }
+}

@@ -1,0 +1,20 @@
+{
+    "fonts": {
+        "title": "Ubuntu-Bold",
+        "subtitle": "PTSans-Regular",
+        "button": "Exo2-VariableFont_wght",
+        "desc": "PTSans-Regular",
+        "input": "Rubik-VariableFont_wght"
+    },
+    "colors": {
+        "accent": "#1e90ff",
+        "mainText": "#222",
+        "subText": "#555",
+        "secondary": "#fff",
+        "today": "#b13b44"
+    },
+    "backgrounds": {
+        "primary": "#fff",
+        "secondary": "#eaeaea"
+    }
+}
