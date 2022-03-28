@@ -10,8 +10,13 @@
         "accent": "#1e90ff",
         "mainText": "#222",
         "subText": "#555",
+        "border": "#c9c9c9",
+        "primary": "#000",
         "secondary": "#fff",
-        "today": "#b13b44"
+        "today": "#b13b44",
+        "tomorrow": "#c9742e",
+        "week": "#15721e",
+        "month": "#1631be"
     },
     "backgrounds": {
         "primary": "#fff",

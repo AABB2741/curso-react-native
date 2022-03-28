@@ -1,9 +1,11 @@
 {
     "lang": "pt-br",
     "langMin": "pt",
+    "appName": "Tasks",
     "buttons": {
         "cancel": "Cancelar",
-        "save": "Salvar"
+        "save": "Salvar",
+        "logout": "Desconectar-se"
     },
     "error": {
         "title": "Ops, ocorreu um erro!",
@@ -12,9 +14,9 @@
         "details": "Detalhes do erro",
         "email_already_in_use": "O e-mail que você está tentando utilizar já está cadastrado!\nPor favor, tente fazer login.",
         "wrong_email_or_password": "E-mail ou senha inválidos.",
-        "task_loading_failure": "Ocorreu um erro ao carregar as suas tarefas. Por favor, tente novamente mais tarde!",
-        "task_add_failure": "Ocorreu um erro ao criar uma nova tarefa. Por favor, tente novamente mais tarde!",
-        "toggle_error": "Ocorreu um erro ao alternar pendência da tarefa. Por favor, tente novamente mais tarde!",
+        "load_task_error": "Ocorreu um erro ao carregar as suas tarefas. Por favor, tente novamente mais tarde!",
+        "add_task_error": "Ocorreu um erro ao criar uma nova tarefa. Por favor, tente novamente mais tarde!",
+        "toggle_task_error": "Ocorreu um erro ao alternar pendência da tarefa. Por favor, tente novamente mais tarde!",
         "delete_task_error": "Ocorreu um erro ao excluir a tarefa. Por favor, tente novamente mais tarde!"
     },
     "success": {
@@ -39,7 +41,10 @@
     },
     "main": {
         "date": {
-            "today": "Hoje"
+            "today": "Hoje",
+            "tomorrow": "Amanhã",
+            "week": "Semana",
+            "month": "Mês"
         },
         "iconBar": {
             "all": "Todas as tarefas",

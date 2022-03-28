@@ -1,19 +1,75 @@
 {
+    "lang": "pt-br",
+    "langMin": "pt",
+    "appName": "Tasks",
     "buttons": {
         "cancel": "Cancel",
-        "save": "Save"
+        "save": "Save",
+        "logout": "Logout"
+    },
+    "error": {
+        "title": "Oops, an error occurred!",
+        "message": "Message",
+        "code": "Error code",
+        "details": "Error details",
+        "email_already_in_use": "The email you are trying to use is already registered!\nPlease try to login.",
+        "wrong_email_or_password": "Invalid email or password.",
+        "load_task_error": "There was an error loading your tasks. Please try again later!",
+        "add_task_error": "An error occurred while creating a new task. Please try again later!",
+        "toggle_task_error": "An error occurred while switching the task issue. Please try again later!",
+        "delete_task_error": "An error occurred while deleting the task. Please try again later!"
+    },
+    "success": {
+        "title": "Success!",
+        "signup_success": "User registered successfully!"
+    },
+    "auth": {
+        "email": "Email",
+        "password": "Password",
+        "confirm_password": "Confirm password",
+        "login": "Login",
+        "signup": "Sign up",
+        "name": "Username",
+        "subtitle": {
+            "signup": "Create your account",
+            "login": "Type your login details"
+        },
+        "switch": {
+            "registered": "Already have an account?",
+            "not_registered": "Don't have an account yet?"
+        }
     },
     "main": {
         "date": {
-            "today": "Today"
+            "today": "Today",
+            "tomorrow": "Tomorrow",
+            "week": "Week",
+            "month": "Month"
         },
         "iconBar": {
             "all": "All tasks",
             "filtered": "Only pending tasks"
         },
+        "task": {
+            "empty": {
+                "title": "No tasks",
+                "desc": "It looks like you don't have tasks for the selected filter. Press \"+\" to create a new task."
+            },
+            "doneAt": "Done at",
+            "delete": "Delete"
+        },
         "newTask": {
             "title": "New task",
-            "input": "What do you need to do?"
+            "input": "What do you need to do?",
+            "date_hint": "By when should you complete this task?",
+            "failure": {
+                "title": "Invalid data",
+                "desc": "Please enter a description for this task!"
+            }
         }
+    },
+    "format": {
+        "date": "MM-DD-YYYY",
+        "moment": "ddd, D MMMM"
     }
 }

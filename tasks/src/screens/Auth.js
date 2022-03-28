@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { ImageBackground, Text, StyleSheet, View, TextInput, TouchableOpacity, Platform, Alert } from "react-native"
 
 import axios from "axios";
+import AsyncStorage from "@react-native-community/async-storage";
 
 import lang from "../../lang/lang";
 import backgroundImage from "../../assets/imgs/login.jpg";
@@ -11,10 +12,10 @@ import AuthInput from "../components/AuthInput";
 import { server, showError, showSuccess, showRequestError } from "../common";
 
 const initialState = {
-    name: "João",
-    email: "joao@gmail.com",
-    password: "123456",
-    confirmPassword: "123456",
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
     stageNew: false
 }
 
@@ -54,8 +55,9 @@ export default class Auth extends Component {
                 password: this.state.password
             });
 
+            AsyncStorage.setItem("userData", JSON.stringify(res.data));
             axios.defaults.headers.common["Authorization"] = `bearer ${res.data.token}`;
-            this.props.navigation.navigate("Home");
+            this.props.navigation.navigate("Home", res.data);
         } catch (e) {
             showRequestError("wrong_email_or_password", e);
         }
@@ -76,7 +78,7 @@ export default class Auth extends Component {
 
         return (
             <ImageBackground source={backgroundImage} style={styles.background}>
-                <Text style={styles.title}>Tasks</Text>
+                <Text style={styles.title}>{lang.appName}</Text>
                 <View style={styles.formContainer}>
                     <Text style={styles.subtitle}>
                         {this.state.stageNew ? lang.auth.subtitle.signup : lang.auth.subtitle.login}
