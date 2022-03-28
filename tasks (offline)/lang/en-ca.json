@@ -1,0 +1,19 @@
+{
+    "buttons": {
+        "cancel": "Cancel",
+        "save": "Save"
+    },
+    "main": {
+        "date": {
+            "today": "Today"
+        },
+        "iconBar": {
+            "all": "All tasks",
+            "filtered": "Only pending tasks"
+        },
+        "newTask": {
+            "title": "New task",
+            "input": "What do you need to do?"
+        }
+    }
+}

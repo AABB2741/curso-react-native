@@ -5,6 +5,38 @@
         "cancel": "Cancelar",
         "save": "Salvar"
     },
+    "error": {
+        "title": "Ops, ocorreu um erro!",
+        "message": "Mensagem",
+        "code": "Código do erro",
+        "details": "Detalhes do erro",
+        "email_already_in_use": "O e-mail que você está tentando utilizar já está cadastrado!\nPor favor, tente fazer login.",
+        "wrong_email_or_password": "E-mail ou senha inválidos.",
+        "task_loading_failure": "Ocorreu um erro ao carregar as suas tarefas. Por favor, tente novamente mais tarde!",
+        "task_add_failure": "Ocorreu um erro ao criar uma nova tarefa. Por favor, tente novamente mais tarde!",
+        "toggle_error": "Ocorreu um erro ao alternar pendência da tarefa. Por favor, tente novamente mais tarde!",
+        "delete_task_error": "Ocorreu um erro ao excluir a tarefa. Por favor, tente novamente mais tarde!"
+    },
+    "success": {
+        "title": "Sucesso!",
+        "signup_success": "Usuário cadastrado com sucesso!"
+    },
+    "auth": {
+        "email": "E-mail",
+        "password": "Senha",
+        "confirm_password": "Confirmar senha",
+        "login": "Fazer login",
+        "signup": "Cadastrar-se",
+        "name": "Nome de usuário",
+        "subtitle": {
+            "signup": "Crie a sua conta",
+            "login": "Informe seus dados de login"
+        },
+        "switch": {
+            "registered": "Já possui uma conta?",
+            "not_registered": "Ainda não possui uma conta?"
+        }
+    },
     "main": {
         "date": {
             "today": "Hoje"

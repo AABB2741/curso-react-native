@@ -13,11 +13,14 @@ import {
 import AsyncStorage from "@react-native-community/async-storage";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import MaterialIcon from "react-native-vector-icons/MaterialIcons";
+import moment from "moment";
+import axios from "axios";
 
 import lang from "../../lang/lang";
 import commonStyles from "../commonStyles.json";
 import todayImage from "../../assets/imgs/today.jpg";
 import getTime from "../getTime";
+import { server, showError, showRequestError } from "../common";
 
 import Task from "../components/Task";
 import AddTask from "./AddTask";
@@ -34,25 +37,23 @@ export default class TaskList extends Component {
         ...initialState
     }
 
-    toggleFilter = () => {
-        this.setState({ showDoneTasks: !this.state.showDoneTasks }, this.filterTasks);
-    }
-
-    addTask = newTask => {
+    addTask = async newTask => {
         if (!newTask.desc.trim()) {
             Alert.alert(lang.main.newTask.failure.title, lang.main.newTask.failure.desc);
             return;
         }
 
-        const tasks = [...this.state.tasks];
-        tasks.push({
-            id: Math.random(),
-            desc: newTask.desc,
-            estimateAt: newTask.date,
-            doneAt: null
-        });
-
-        this.setState({ tasks }, this.filterTasks);
+        try {
+            await axios.post(`${server}/tasks`, {
+                desc: newTask.desc,
+                estimateAt: newTask.date
+            });
+            
+            this.setState({ showAddTask: false }, this.loadTasks);
+        } catch (e) {
+            showRequestError("task_add_failure", e);
+        }
+        
     }
 
     filterTasks = () => {
@@ -67,7 +68,9 @@ export default class TaskList extends Component {
         }
 
         this.setState({ visibleTasks });
-        AsyncStorage.setItem("tasks", JSON.stringify(this.state));
+        AsyncStorage.setItem("tasks", JSON.stringify({
+            showDoneTasks: this.state.showDoneTasks
+        }));
     }
 
     get isEmpty() {
@@ -76,24 +79,44 @@ export default class TaskList extends Component {
 
     componentDidMount = async () => {
         const stateString = await AsyncStorage.getItem("tasks");
-        const state = JSON.parse(stateString) || initialState;
-        this.setState(state, this.filterTasks);
+        const savedState = JSON.parse(stateString) || initialState;
+        this.setState({
+            showDoneTasks: savedState.showDoneTasks
+        }, this.filterTasks);
+
+        this.loadTasks();
     }
 
-    toggleTask = taskId => {
-        const tasks = [...this.state.tasks];
-        tasks.forEach(task => {
-            if (task.id === taskId) {
-                task.doneAt = task.doneAt ? null : new Date();
-            }
-        });
-
-        this.setState({ tasks }, this.filterTasks);
+    loadTasks = async () => {
+        try {
+            const maxDate = moment().format("YYYY-MM-DD 23:59:59");
+            const res = await axios.get(`${server}/tasks?date=${maxDate}`);
+            this.setState({ tasks: res.data }, this.filterTasks);
+        } catch (e) {
+            showRequestError("task_loading_failure", e);
+        }
     }
 
-    deleteTask = id => {
-        const tasks = this.state.tasks.filter(t => t.id !== id);
-        this.setState({ tasks }, this.filterTasks);
+    toggleFilter = () => {
+        this.setState({ showDoneTasks: !this.state.showDoneTasks }, this.filterTasks);
+    }
+
+    toggleTask = async taskId => {
+        try {
+            await axios.put(`${server}/tasks/${taskId}/toggle`);
+            this.loadTasks();
+        } catch (e) {
+            showRequestError("toggle_error", e);
+        }
+    }
+
+    deleteTask = async taskId => {
+        try {
+            await axios.delete(`${server}/tasks/${taskId}`);
+            this.loadTasks();
+        } catch (e) {
+            showRequestError("delete_task_error", e);
+        }
     }
 
     render() {

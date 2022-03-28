@@ -3,6 +3,7 @@ const moment = require("moment");
 module.exports = app => {
     const getTasks = (req, res) => {
         const date = req.query.date ? req.query.date : moment().endOf("day").toDate();
+        console.log(date)
 
         app.db("tasks")
             .where({ userId: req.user.id })

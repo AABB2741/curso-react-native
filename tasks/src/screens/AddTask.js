@@ -38,7 +38,6 @@ export default class AddTask extends Component {
         };
 
         this.props.onSave && this.props.onSave(newTask);
-        this.props.onCancel();
         // if (this.props.onSave) {
         //     this.props.onSave(newTask);
         // }
