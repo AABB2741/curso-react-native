@@ -1,0 +1,49 @@
+{
+    "appName": "Lambe Lambe",
+    "modals": {
+        "permissions": {
+            "camera": {
+                "title": "Permissão da câmera",
+                "message": "Este aplicativo precisa de permissão para acesso à câmera"
+            },
+            "storage": {
+                "title": "Permissão de armazenamento",
+                "message": "Este aplicativo precisa de permissão para o armazenamento"
+            }
+        }
+    },
+    "post": {
+        "addComment": "Escreva um comentário...",
+        "addCommentButton": "Adicione um comentário"
+    },
+    "navigator": {
+        "feed": "Feed",
+        "addPhoto": "Publicar foto",
+        "profile": "Perfil"
+    },
+    "addPhoto": {
+        "title": "Escolher uma imagem",
+        "desc": "De onde você quer pegar a foto?",
+        "gallery": "Galeria",
+        "camera": "Câmera",
+        "shareAnImage": "Compartilhe uma imagem",
+        "buttonText": "Escolha a foto",
+        "addComment": "Adicione um comentário à foto...",
+        "publish": "Publicar!"
+    },
+    "profile": {
+        "logout": "Sair"
+    },
+    "sign": {
+        "login": "Fazer login",
+        "register": "Criar nova conta",
+        "form": {
+            "nickname": "Nome de usuário",
+            "email": "E-mail",
+            "password": "Senha",
+            "login": "Fazer login",
+            "signup": "Criar nova conta",
+            "save": "Salvar"
+        }
+    }
+}
