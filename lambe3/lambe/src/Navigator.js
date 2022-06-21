@@ -16,7 +16,7 @@ import Register from "./screens/Register";
 const Stack = createStackNavigator();
 function LoginOrProfileRouter() {
     return (
-        <Stack.Navigator initialRouteName={Screen.Profile} screenOptions={{ headerShown: false }}>
+        <Stack.Navigator initialRouteName={Screen.Login} screenOptions={{ headerShown: false }}>
             <Stack.Screen
                 name={Screen.Profile}
                 component={Profile}

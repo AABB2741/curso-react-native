@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { logout } from "../store/actions/user";
 import {
     View,
     Text,
@@ -16,20 +18,21 @@ import lang from "../../lang/lang";
 
 class Profile extends Component {
     logout = () => {
+        this.props.onLogout();
         this.props.navigation.navigate(Screen.Login);
     }
 
     render() {
         const options = {
-            email: "teste@teste.com",
+            email: this.props.email,
             secure: true
         }
 
         return (
             <View style={styles.container}>
                 <Gravatar options={options} style={styles.avatar} />
-                <Text style={styles.nickname}>Teste</Text>
-                <Text style={styles.email}>teste@teste.com</Text>
+                <Text style={styles.nickname}>{this.props.name}</Text>
+                <Text style={styles.email}>{this.props.email}</Text>
                 <TouchableOpacity onPress={this.logout} style={{...styles.button, ...button.large}}>
                     {/* <Icon name="sign-out-alt" size={30} color={Palette.buttonText }/> */}
                     <Text style={styles.buttonText}>{lang.profile.logout}</Text>
@@ -68,6 +71,20 @@ const styles = StyleSheet.create({
     buttonText: {
         ...button.text
     }
-})
+});
 
-export default Profile;
+const mapStateToProps = ({ user }) => {
+    return {
+        email: user.email,
+        name: user.name
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onLogout: () => dispatch(logout())
+    }
+}
+
+// export default Profile;
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);
