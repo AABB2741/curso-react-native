@@ -6,6 +6,7 @@ import {
 } from "react-native";
 import Fonts from "../../common/styles/Fonts";
 import Palette from "../../common/styles/Palette/Palette";
+import lang from "../../lang/lang";
 
 class Comments extends Component {
     render() {
@@ -15,7 +16,7 @@ class Comments extends Component {
             view = this.props.comments.map((item, index) => {
                 return (
                     <View style={styles.commentContainer} key={index}>
-                        <Text style={styles.nickname}>{item.nickname}: </Text>
+                        <Text style={styles.nickname}>{item.nickname || lang.user.altname}: </Text>
                         <Text style={styles.comment}>{item.comment}</Text>
                     </View>
                 )

@@ -1,5 +1,12 @@
 {
     "appName": "Lambe Lambe",
+    "error": {
+        "title": "Erro!",
+        "unauthorized": "Você precisa estar logado para publicar fotos!"
+    },
+    "user": {
+        "altname": "Anônimo"
+    },
     "permissions": {
         "camera": {
             "title": "Permissão para acesso à Câmera",

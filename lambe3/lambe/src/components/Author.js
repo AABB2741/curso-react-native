@@ -8,11 +8,13 @@ import { Gravatar } from "react-native-gravatar";
 import Fonts from "../../common/styles/Fonts";
 import Palette from "../../common/styles/Palette/Palette";
 
+import lang from "../../lang/lang";
+
 export default props => {
     return (
         <View style={styles.container}>
             <Gravatar options={{ email: props.email, secure: true }} style={styles.avatar} />
-            <Text style={styles.nickname}>{props.nickname}</Text>
+            <Text style={styles.nickname}>{props.nickname || lang.user.altname}</Text>
         </View>
     );
 }

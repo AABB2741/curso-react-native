@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { addPost } from "../store/actions/posts";
 import {
     View,
     Text,
@@ -13,11 +15,16 @@ import {
     PermissionsAndroid
 } from "react-native";
 import * as ImagePicker from "react-native-image-picker";
+
+import * as Screen from "../Screen";
+
 import button from "../../common/styles/button";
 import Fonts from "../../common/styles/Fonts";
 import input from "../../common/styles/input";
 import Palette from "../../common/styles/Palette/Palette";
 import lang from "../../lang/lang";
+
+const noUser = lang.error.unauthorized;
 
 class AddPhoto extends Component {
     state = {
@@ -31,12 +38,6 @@ class AddPhoto extends Component {
         maxHeight: 600,
         includeBase64: true
     };
-
-    state = {
-        uri: null,
-        base64: null,
-        comment: '',
-    }
 
     requestCameraPermission = async () => {
         if (Platform.OS === 'android') {
@@ -85,22 +86,44 @@ class AddPhoto extends Component {
                 if (!response.didCancel) {
                     Alert.alert("Jorge henrique vascaino");
                     console.log(response)
-                    this.setState({ uri: response.assets[0].uri, base64: response.assets[0].base64 })
+                    this.setState({ image: {uri: response.assets[0].uri, base64: response.assets[0].base64} })
                 }
             });
         }
     };
 
     pickImage = () => {
+        if (!this.props.name) {
+            Alert.alert(lang.error.title, noUser);
+            return;
+        }
+
         ImagePicker.launchImageLibrary(this.options, response => {
             if (!response.didCancel) {
-                this.setState({ uri: response.assets[0].uri, base64: response.assets[0].base64 });
+                this.setState({ image: {uri: response.assets[0].uri, base64: response.assets[0].base64} });
             }
         });
     };
 
     save = async () => {
-        Alert.alert("Imagem adicionada!", this.state.comment);
+        if (!this.props.name) {
+            Alert.alert(lang.error.title, noUser);
+            return;
+        }
+
+        this.props.onAddPost({
+            id: Math.random(),
+            nickname: this.props.name,
+            email: this.props.email,
+            image: this.state.image,
+            comments: [{
+                nickname: this.props.name,
+                comment: this.state.comment
+            }]
+        });
+
+        this.setState({ image: null, comment: "" });
+        this.props.navigation.navigate(Screen.Feed);
     }
 
     render() {
@@ -109,7 +132,7 @@ class AddPhoto extends Component {
                 <View style={styles.container}>
                     <Text style={styles.title}>{lang.addPhoto.title}</Text>
                     <View style={styles.imageContainer}>
-                        <Image source={{uri: this.state.uri}} style={styles.image} />
+                        <Image source={this.state.image} style={styles.image} />
                     </View>
                     <TouchableOpacity onPress={this.pickImage} style={styles.button}>
                         <Text style={styles.buttonText}>{lang.addPhoto.choosePhoto}</Text>
@@ -119,6 +142,7 @@ class AddPhoto extends Component {
                         style={styles.input}
                         value={this.state.comment}
                         onChangeText={comment => this.setState({ comment })}
+                        editable={!!this.props.name}
                     />
                     <TouchableOpacity onPress={this.save} style={{...styles.button, ...button.large}}>
                         <Text style={styles.buttonText}>{lang.addPhoto.publish}</Text>
@@ -166,4 +190,18 @@ const styles = StyleSheet.create({
     }
 });
 
-export default AddPhoto;
+const mapStateToProps = ({ user }) => {
+    return {
+        email: user.email,
+        name: user.name
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onAddPost: post => dispatch(addPost(post))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddPhoto);
+// export default AddPhoto;
