@@ -1,0 +1,18 @@
+{
+    "accent": "#1e90ff",
+    "error": "#ff0000",
+    "border": "#bbb",
+    "background": "#f6f7fd",
+    "background2": "#fff",
+    "text": "#000",
+    "text2": "#fff",
+    "buttonText": "#fff",
+    "post": {
+        "nickname": "#444",
+        "comment": "#555",
+        "addComment": {
+            "button": "#555",
+            "caption": "#ccc"
+        }
+    }
+}

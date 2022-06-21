@@ -19,7 +19,7 @@ class Login extends Component {
     }
 
     render() {
-        return(
+        return (
             <View style={styles.container}>
                 <TextInput placeholder={lang.sign.form.email} style={styles.input} autoFocus={true} keyboardType="email-address" value={this.state.email} onChangeText={email => this.setState({ email })} />
                 <TextInput placeholder={lang.sign.form.password} style={styles.input}  secureTextEntry={true} value={this.state.password} onChangeText={password => this.setState({ password })}/>
