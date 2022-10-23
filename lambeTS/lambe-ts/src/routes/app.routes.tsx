@@ -6,6 +6,7 @@ const Tab = createBottomTabNavigator();
 
 import Feed from "../screens/Feed";
 import AddPhoto from "../screens/AddPhoto";
+import Profile from "../screens/Profile";
 
 export default () => {
     const { lang } = useLang();
@@ -20,7 +21,7 @@ export default () => {
                 title: lang.add_photo.label,
                 tabBarIcon: ({ color, focused }) => <Camera color={color} weight={focused ? "fill" : "light"} />,
             }} />
-            <Tab.Screen name="Profile" component={Feed} options={{
+            <Tab.Screen name="Profile" component={Profile} options={{
                 title: lang.profile.label,
                 tabBarIcon: ({ color, focused }) => <User color={color} weight={focused ? "fill" : "light"} />,
             }} />
