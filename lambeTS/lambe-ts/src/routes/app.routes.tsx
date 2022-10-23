@@ -5,6 +5,7 @@ import { House, Camera, User } from "phosphor-react-native";
 const Tab = createBottomTabNavigator();
 
 import Feed from "../screens/Feed";
+import AddPhoto from "../screens/AddPhoto";
 
 export default () => {
     const { lang } = useLang();
@@ -12,15 +13,15 @@ export default () => {
     return (
         <Tab.Navigator initialRouteName="Feed" screenOptions={{ headerShown: false, tabBarShowLabel: false }}>
             <Tab.Screen name="Feed" component={Feed} options={{
-                title: lang.feed.title,
+                title: lang.feed.label,
                 tabBarIcon: ({ color, focused }) => <House color={color} weight={focused ? "fill" : "light"} />,
             }} />
-            <Tab.Screen name="AddPhoto" component={Feed} options={{
-                title: lang.add_photo.title,
+            <Tab.Screen name="AddPhoto" component={AddPhoto} options={{
+                title: lang.add_photo.label,
                 tabBarIcon: ({ color, focused }) => <Camera color={color} weight={focused ? "fill" : "light"} />,
             }} />
             <Tab.Screen name="Profile" component={Feed} options={{
-                title: lang.profile.title,
+                title: lang.profile.label,
                 tabBarIcon: ({ color, focused }) => <User color={color} weight={focused ? "fill" : "light"} />,
             }} />
         </Tab.Navigator>
