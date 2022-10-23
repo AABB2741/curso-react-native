@@ -21,7 +21,7 @@ class Register extends Component {
         email: "",
         password: ""
     }
-
+    // Parei na aula 217
     render() {
         return (
             <View style={styles.container}>

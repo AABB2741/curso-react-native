@@ -1,0 +1,15 @@
+{
+    "appName": "Lambe Lambe",
+    "feed": {
+        "title": "Feed",
+        "post": {
+            "add_comment_placeholder": "Adicione um comentário..."
+        }
+    },
+    "add_photo": {
+        "title": "Adicionar foto"
+    },
+    "profile": {
+        "title": "Perfil"
+    }
+}
