@@ -7,7 +7,8 @@ import { useFonts } from 'expo-font';
 import * as SplashScreen from "expo-splash-screen";
 import { NavigationContainer } from '@react-navigation/native';
 
-import AppRoutes from './src/routes/app.routes';
+import Routes from './src/routes';
+import AuthProvider from './src/contexts/auth';
 
 export default function App() {
 	const [fontsLoaded] = useFonts({
@@ -26,10 +27,12 @@ export default function App() {
 
 	return (
 		<NavigationContainer>
-			<View style={{ flex: 1 }} onLayout={onLayoutRootView}>
-				<StatusBar barStyle="default" />
-				<AppRoutes />
-			</View>
+			<AuthProvider>
+				<View style={{ flex: 1 }} onLayout={onLayoutRootView}>
+					<StatusBar barStyle="default" />
+					<Routes />
+				</View>
+			</AuthProvider>
 		</NavigationContainer>
 	);
 }

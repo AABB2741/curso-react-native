@@ -4,16 +4,14 @@ import {
     TouchableOpacity
 } from "react-native";
 import { Gravatar } from "react-native-gravatar";
+import { useAuth } from "../../contexts/auth";
 import { useLang } from "../../contexts/lang";
 
 import styles from "./styles";
 
 export default function Profile() {
     const { lang } = useLang();
-
-    function handleLogout() {
-
-    }
+    const { handleSignOut } = useAuth();
 
     return (
         <View style={styles.container}>
@@ -23,7 +21,7 @@ export default function Profile() {
             />
             <Text style={styles.nickname}>Fulano de tal</Text>
             <Text style={styles.email}>fulanodetal@gmail</Text>
-            <TouchableOpacity onPress={handleLogout} style={styles.button}>
+            <TouchableOpacity onPress={handleSignOut} style={styles.button}>
                 <Text style={styles.buttonText}>{lang.profile.logout}</Text>
             </TouchableOpacity>
         </View>
