@@ -12,6 +12,7 @@ interface PostsContextProps {
 interface PostsContextData {
     posts: IPost[];
     handleAddPost: (image: ImageSourcePropType, comment: string) => Promise<void>;
+    handleAddComment: (id: number, comment: string) => Promise<void>;
 }
 
 const PostsContext = createContext<PostsContextData>({} as PostsContextData);
@@ -44,6 +45,19 @@ export default function PostsProvider({ children }: PostsContextProps) {
         setPosts(initialState);
     }, []);
 
+    async function handleAddComment(id: number, comment: string) {
+        let newPosts = [...posts];
+        for (let post of newPosts) {
+            if (post.id === id) {
+                post.comments.push({
+                    nickname: user?.name || "",
+                    comment
+                });
+            }
+        }
+        setPosts(newPosts);
+    }
+
     async function handleAddPost(image: ImageSourcePropType, comment: string) {
         if (!signed)
             return;
@@ -63,7 +77,7 @@ export default function PostsProvider({ children }: PostsContextProps) {
     }
 
     return (
-        <PostsContext.Provider value={{ posts, handleAddPost }}>
+        <PostsContext.Provider value={{ posts, handleAddPost, handleAddComment }}>
             {children}
         </PostsContext.Provider>
     )

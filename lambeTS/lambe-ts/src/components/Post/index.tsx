@@ -11,13 +11,13 @@ import AddComment from "../AddComment";
 
 import IPost from "../../interfaces/Post";
 
-export default function Post({ email, nickname, comments, image }: IPost) {
+export default function Post({ email, nickname, comments, image, id }: IPost) {
     return (
         <View style={styles.container}>
             <Image source={image} style={styles.image} />
             <Author email={email} nickname={nickname} />
             <Comments comments={comments} />
-            <AddComment />
+            <AddComment postId={id} />
         </View>
     );
 }

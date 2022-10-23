@@ -10,16 +10,18 @@ import { X, ChatTeardropText } from "phosphor-react-native";
 
 import styles from "./styles";
 import { useState } from "react";
+import { usePosts } from "../../contexts/posts";
 
-export default function AddComment() {
+interface AddCommentProps {
+    postId: number;
+}
+
+export default function AddComment({ postId }: AddCommentProps) {
+    const { handleAddComment } = usePosts();
     const { lang } = useLang();
 
     const [comment, setComment] = useState("");
     const [editMode, setEditMode] = useState(false);
-
-    function handleAddComment() {
-        Alert.alert("Adicionado!", comment);
-    }
 
     if (editMode) {
         return (
@@ -31,7 +33,11 @@ export default function AddComment() {
                         autoFocus
                         value={comment}
                         onChangeText={comment => setComment(comment)}
-                        onSubmitEditing={handleAddComment}
+                        onSubmitEditing={() => {
+                            handleAddComment(postId, comment);
+                            setComment("");
+                            setEditMode(false);
+                        }}
                     />
                     <TouchableOpacity onPress={() => setEditMode(false)}>
                         <X size={15} color="#555" />
