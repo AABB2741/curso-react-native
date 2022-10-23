@@ -19,7 +19,7 @@ export default function Profile() {
             style={styles.avatar}
                 options={{ email: user?.email, secure: true }}
             />
-            <Text style={styles.nickname}>{user?.name ?? "Sem usuário"}</Text>
+            <Text style={styles.nickname}>{user?.name ?? lang.anonymous}</Text>
             <Text style={styles.email}>{user?.email}</Text>
             <TouchableOpacity onPress={handleSignOut} style={styles.button}>
                 <Text style={styles.buttonText}>{lang.profile.logout}</Text>

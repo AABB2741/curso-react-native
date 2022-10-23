@@ -9,13 +9,21 @@ import {
     Alert,
     ImageSourcePropType
 } from "react-native";
+import { usePosts } from "../../contexts/posts";
 import { useLang } from "../../contexts/lang";
 import * as ImagePicker from "expo-image-picker";
 
 import styles from "./styles";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { RootParamList } from "../../@types/navigation";
 
-export default function AddPhoto() {
+type AddPhotoProps = {
+    navigation: NativeStackNavigationProp<RootParamList, "AddPhoto">
+}
+
+export default function AddPhoto({ navigation }: AddPhotoProps) {
     const { lang } = useLang();
+    const { handleAddPost } = usePosts();
 
     const [comment, setComment] = useState("");
     const [image, setImage] = useState<ImageSourcePropType>({});
@@ -35,6 +43,10 @@ export default function AddPhoto() {
 
     async function handleSavePost() {
         Alert.alert("Imagem adicionada!", comment);
+        handleAddPost(image, comment);
+        setComment("");
+        setImage({});
+        navigation.navigate("Feed");
     }
 
     return (

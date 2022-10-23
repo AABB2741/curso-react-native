@@ -9,7 +9,10 @@ export default StyleSheet.create({
         marginTop: Platform.OS == "ios" ? 20 : 0,
         padding: 10,
         borderBottomWidth: 1,
-        borderColor: "#bbb"
+        borderColor: "#bbb",
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-between"
     },
     rowContainer: {
         flexDirection: "row",
@@ -25,5 +28,19 @@ export default StyleSheet.create({
         fontFamily: "shelter",
         height: 30,
         fontSize: 26
+    },
+    userContainer: {
+        flexDirection: "row",
+        alignItems: "center"
+    },
+    user: {
+        fontSize: 10,
+        color: "#888"
+    },
+    avatar: {
+        width: 30,
+        height: 30,
+        marginLeft: 10,
+        borderRadius: 15
     }
 });

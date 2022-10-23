@@ -18,7 +18,7 @@ export default function AuthProvider({children}: AuthContextProps) {
     const [user, setUser] = useState<IUser | null>({ name: "Temporário", email: "temporario@gmail.com" });
 
     function handleSignIn(email: string, password: string) {
-        setUser({ email, password });
+        setUser({ email, password, name: "Temporário" });
     }
 
     function handleSignOut() {
