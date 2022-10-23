@@ -38,7 +38,7 @@ export default function Login({ navigation }: LoginProps) {
                 value={password}
                 onChangeText={password => setPassword(password)}
             />
-            <TouchableOpacity onPress={handleSignIn} style={styles.button}>
+            <TouchableOpacity onPress={() => handleSignIn(email, password)} style={styles.button}>
                 <Text style={styles.buttonText}>{lang.profile.form.login}</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => navigation.navigate("Register")} style={styles.button}>

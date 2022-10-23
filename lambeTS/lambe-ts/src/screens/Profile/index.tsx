@@ -11,16 +11,16 @@ import styles from "./styles";
 
 export default function Profile() {
     const { lang } = useLang();
-    const { handleSignOut } = useAuth();
+    const { user, handleSignOut } = useAuth();
 
     return (
         <View style={styles.container}>
             <Gravatar
             style={styles.avatar}
-                options={{ email: "fulanodetal@gmail.com", secure: true }}
+                options={{ email: user?.email, secure: true }}
             />
-            <Text style={styles.nickname}>Fulano de tal</Text>
-            <Text style={styles.email}>fulanodetal@gmail</Text>
+            <Text style={styles.nickname}>{user?.name ?? "Sem usuário"}</Text>
+            <Text style={styles.email}>{user?.email}</Text>
             <TouchableOpacity onPress={handleSignOut} style={styles.button}>
                 <Text style={styles.buttonText}>{lang.profile.logout}</Text>
             </TouchableOpacity>

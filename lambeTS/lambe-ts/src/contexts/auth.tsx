@@ -1,23 +1,24 @@
 import { useState, createContext, useContext } from "react";
+import IUser from "../interfaces/User";
 
 interface AuthContextData {
     signed: boolean;
-    user: object | null;
-    handleSignIn: () => void;
+    user: IUser | null;
+    handleSignIn: (email: string, password: string) => void;
     handleSignOut: () => void;
 }
-
-const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 interface AuthContextProps {
     children: React.ReactNode
 }
 
-export default function AuthProvider({children}: AuthContextProps) {
-    const [user, setUser] = useState<object | null>({ teste: "vasco" });
+const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
-    function handleSignIn() {
-        setUser({});
+export default function AuthProvider({children}: AuthContextProps) {
+    const [user, setUser] = useState<IUser | null>({ name: "Temporário", email: "temporario@gmail.com" });
+
+    function handleSignIn(email: string, password: string) {
+        setUser({ email, password });
     }
 
     function handleSignOut() {
