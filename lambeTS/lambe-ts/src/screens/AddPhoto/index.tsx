@@ -9,6 +9,7 @@ import {
     Alert,
     ImageSourcePropType
 } from "react-native";
+import { useAuth } from "../../contexts/auth";
 import { usePosts } from "../../contexts/posts";
 import { useLang } from "../../contexts/lang";
 import * as ImagePicker from "expo-image-picker";
@@ -22,6 +23,7 @@ type AddPhotoProps = {
 }
 
 export default function AddPhoto({ navigation }: AddPhotoProps) {
+    const { signed } = useAuth();
     const { lang } = useLang();
     const { handleAddPost } = usePosts();
 
@@ -29,6 +31,10 @@ export default function AddPhoto({ navigation }: AddPhotoProps) {
     const [image, setImage] = useState<ImageSourcePropType>({});
 
     function handlePickImage() {
+        if (!signed) {
+            return Alert.alert(lang.add_photo.err.title, lang.add_photo.err.no_user);
+        }
+
         ImagePicker.launchImageLibraryAsync({
             mediaTypes: ImagePicker.MediaTypeOptions.Images,
             allowsEditing: true,
@@ -42,7 +48,10 @@ export default function AddPhoto({ navigation }: AddPhotoProps) {
     }
 
     async function handleSavePost() {
-        Alert.alert("Imagem adicionada!", comment);
+        if (!signed) {
+            return Alert.alert(lang.add_photo.err.title, lang.add_photo.err.no_user);
+        }
+
         handleAddPost(image, comment);
         setComment("");
         setImage({});
@@ -62,6 +71,7 @@ export default function AddPhoto({ navigation }: AddPhotoProps) {
                         placeholder={lang.add_photo.comment}
                         style={styles.input}
                         value={comment}
+                        editable={signed}
                         onChangeText={comment => setComment(comment)}
                     />
                     <TouchableOpacity style={styles.button} onPress={handleSavePost}>

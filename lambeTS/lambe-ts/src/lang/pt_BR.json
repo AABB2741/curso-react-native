@@ -12,7 +12,11 @@
         "title": "Compartilhe uma imagem",
         "button": "Selecione a foto",
         "comment": "Escreva algum comentário para a foto...",
-        "publish": "Publicar!"
+        "publish": "Publicar!",
+        "err": {
+            "title": "Não foi possível selecionar uma imagem!",
+            "no_user": "Você precisa fazer login para publicar uma imagem."
+        }
     },
     "profile": {
         "label": "Perfil",
